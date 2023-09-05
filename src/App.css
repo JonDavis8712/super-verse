@@ -10,6 +10,245 @@
     --glow-color: hsl(0, 75%, 45%);
 }
 
+.Profile {
+    color: var(--secondary-color);
+}
+
+.profileBox {
+    display: flex;
+    background-color: var(--primary-color);
+    border-radius: 15px;
+    height: 500px;
+}
+
+.createUser {
+    color: white;
+}
+
+.container {
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-toggle {
+    display: none; /* Hide the toggle button by default */
+    cursor: pointer;
+}
+
+.navbar-toggle span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar-item a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.navbar-item a:hover {
+    color: var(--glow-color);
+}
+
+/* Media query for small screens */
+@media screen and (max-width: 768px) {
+    .navbar-toggle {
+        display: block; /* Show the toggle button for small screens */
+    }
+
+    .navbar-menu {
+        display: none; /* Hide the menu by default */
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        text-align: center;
+        opacity: .85;
+        z-index: 1;
+    }
+
+    .navbar-menu.active {
+        display: flex; /* Show the menu when active */
+    }
+
+    .navbar-item {
+        margin: 1rem 0;
+    }
+}
+
+.login {
+    color: white;
+}
+
+
+.registerUser {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.loginUser {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+.regBtn {
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+}
+
+.google {
+    margin-top: 1.6rem;
+}
+
+.loginBtn {
+    margin-top: 1.6rem;
+}
+
+.loginBtn, .oldUser, .google,
+.regBtn {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: var(--glow-color);
+  cursor: pointer;
+  transition: color 300ms ease-in-out, background-color 300ms ease-in-out;
+  border: 0.1em solid var(--glow-color);
+  border-radius: 0.45em;
+  padding: 0.32em 0.32em;
+  background: none;
+  perspective: 2em;
+  -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  animation: border-flicker 2s linear infinite;
+}
+
+/* Button hover effects */
+.loginBtn::before,
+.oldUser::before,
+.regBtn::before,
+.google::before {
+  opacity: 0.7;
+  filter: blur(1em);
+  position: absolute;
+  content: "";
+  transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+  background: var(--glow-color);
+  pointer-events: none;
+}
+
+.loginBtn::after,
+.oldUser::after,
+.regBtn::after ,
+.google::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: -1;
+  background-color: var(--glow-color);
+  box-shadow: 0 0 2em 0.2em var(--glow-color);
+  transition: opacity 100ms linear;
+}
+
+/* Button hover styles */
+.regBtn:hover::before,
+.oldUser:hover::before,
+.loginBtn:hover::before,
+.google:hover::before {
+  filter: blur(1.5em);
+  opacity: 1;
+}
+
+.regBtn:hover::after,
+.loginBtn:hover::after,
+.oldUser:hover::after,
+.google:hover::after {
+  opacity: 1;
+}
+
+/* Button text color on hover */
+.regBtn:hover,
+.loginBtn:hover,.oldUser:hover, .google:hover {
+  color: #000; /* Text color turns black on hover */
+}
+
+
+.LoginBox {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: black;
+    width: 420px;
+    height: 500px;
+    padding: 5rem;
+    border-radius: 20px;
+    background: transparent;
+    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 2em 0px var(--glow-color);
+    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 2em 0px var(--glow-color);
+    box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 2em 0px var(--glow-color);
+}
+
+.email {
+    color: white;
+    width: 300px;
+    border: 3px solid var(--secondary-color);
+    border-radius: 8px;
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+    padding: 0.8rem;
+}
+
+.password {
+    color: white;
+    width: 300px;
+    border: 3px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 0.8rem;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -46,9 +285,10 @@ body {
     -ms-flex-pack: stretch;
     font-size: 1.7rem;
     min-height: 100vh;
-    background: black;
+    background: white;
     font-family: var(--poppins-font);
     line-height: 1.6;
+    background: black;
     
 }
 
@@ -70,6 +310,14 @@ img{
 }
 
 
+p {
+    color: var(--glow-color);
+}
+
+.character {
+    color: var(--accent-color);
+}
+
 .main-wrapper{
     max-width: 1280px;
     width: 100%;
@@ -82,6 +330,12 @@ img{
     border-radius: 10px;
     color: #fff;
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 2em 0px var(--glow-color);
+    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 2em 0px var(--glow-color);
+    box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 2em 0px var(--glow-color);
 }
 .header {
     display: flex;
@@ -94,9 +348,9 @@ img{
 }
 .app-title{
   position: absolute;
-  top: 20px; /* Adjust the distance from the top */
-  left: 20px; /* Adjust the distance from the left */
-  animation: floatAnimation 45s linear infinite;  
+  top: 45px; 
+  left: 20px;
+  animation: floatAnimation 30s linear infinite;
 }
 
 @keyframes floatAnimation {
@@ -115,10 +369,7 @@ img{
 
 }
 
-.app-title:hover{
-  transform: rotateX(10deg) translateZ(50px);
-  cursor: pointer;
-}
+
 
 .app-title span{
     font-size: 3rem;
@@ -126,6 +377,7 @@ img{
     color: #fff;
     cursor: pointer;
     transition: all 300ms ease-in-out;
+    transfrom-origin: center bottom;
     color: var(--glow-color);
     cursor: pointer;
     border: 0.1em solid var(--glow-color);
@@ -149,7 +401,9 @@ img{
     animation: none;
     background: var(--glow-color);
 }
-
+.combat {
+    color: var(--glow-color);
+}
 .app-title span::before {
   opacity: 0.7;
   filter: blur(1em);
@@ -748,4 +1002,67 @@ i{
   transition: opacity 100ms linear;
 }
 
+.charbox .characters {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color);
+    border-radius: 15px;
+    height: 100%;
+    width: 200px;
+}
 
+.characters {
+    color: var(--glow-color);
+    white-space: nowrap;
+    
+}
+
+
+.characters div {
+    border: 1px solid var(--glow-color);
+    padding: 2rem 1rem;
+    margin: 1rem;
+    border-radius: 20px;
+}
+
+.characters h2 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.characters li span:first-child {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.characters li span:last-child {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+}
+
+.hidden {
+    display: none;
+  }
+
+.profileBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    margin: 2rem;
+    padding: 1rem;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 2em 0px var(--glow-color);
+    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 2em 0px var(--glow-color);
+    box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 2em 0px var(--glow-color);
+}

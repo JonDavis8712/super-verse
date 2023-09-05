@@ -243,8 +243,8 @@ if (relativesDiv) {
     <div className="main-wrapper">
     <div className="app">
     <div className="header">
-          <h2 className="app-title">Super<span>Verse.
-          </span></h2>
+          {/* <h2 className="app-title">Super<span>Verse.
+          </span></h2> */}
           <form onSubmit={handleFormSubmit} className="top-search">
             <input type = "text" className='form-control' placeholder="Search for a character here"
             name = "search" value={searchText} onChange={handleInputChange}/>
