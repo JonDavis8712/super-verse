@@ -57,11 +57,9 @@ function API() {
   return (
     <div>
     <div className="charbox">
-       <ul className='characters'>
-          
+       <ul className='characters'>  
       </ul> 
     </div>
-      
       </div>
   );
 }
