@@ -238,6 +238,7 @@ if (relativesDiv) {
     <HelmetProvider>
     <title>Super<span>Verse</span></title>
       <meta name="description" content="SuperVerse is a website for all things Super!" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       <link rel = "stylesheet" href="main.css" ></link>
       <link rel = "stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css" ></link>
     </HelmetProvider>
