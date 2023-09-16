@@ -1,131 +1,120 @@
-import { useState, useRef, useEffect } from 'react';
-import { createUserWithEmailAndPassword, 
- onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { auth, googleProvider } from '../firebaseConfig';
-import { signInWithGoogle } from '../firebaseConfig';
+import React, { useState } from'react';
 import { useNavigate } from'react-router-dom';
+import { auth, signInWithGoogle, signInWithEmailAndPassword, googleProvider } from '../firebaseConfig';
+import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { firestore } from '../firebaseConfig';
 import Header from '../components/Header';
-
-
+import "./Login.css"
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const registerEmailRef = useRef(null);
-  const registerPasswordRef = useRef(null);
-  const [registerEmail, setRegisterEmail] = useState('');
-  const [registerPassword, setRegisterPassword] = useState('');
-  const [loginEmail, setloginEmail] = useState('');
-  const [loginPassword, setloginPassword] = useState('');
-  const [isVisible, setIsVisible] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
-      if (currentUser) {
-              navigate('/Profile');
-            }
-  });
-   return () => {
-    unsubscribe();
-   };
-  }, [navigate]);
-
-  const registerUser = async (e) => {
-        try {
-            const user = await createUserWithEmailAndPassword(
-                auth,
-                registerEmail,
-                registerPassword);
-                userLoggedIn();
-            console.log(user);
-            
-        } catch (error) {
-            console.log(error.message);
-        }
-        
-    }
-
-    const loginUser = async (e) => {
-      try {
-        const user = await signInWithEmailAndPassword(
-            auth,
-            loginEmail,
-            loginPassword);
-            userLoggedIn();
-        console.log(user);
-        
-        
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    try{
+      await auth.signInWithEmailAndPassword(email, password);
+      navigate('/Profile');
     } catch (error) {
-        console.log(error.message);
+      console.log('Login error: ', error);
     }
-    
+  };
+  const handleRegister = async (event) => {
+    event.preventDefault();
+    try{
+      await createUserWithEmailAndPassword(auth, email, password);
+      navigate('/Profile');
+    } catch (error) {
+      console.log('Login error: ', error);
     }
+  };
 
-    const handleGoogleLogin = async (e) => {
-      try {
-        const result  = await signInWithGoogle();
-        const user = result.user;
-        console.log('Google login successful: ', user);
-      } catch (error) {
-        console.log('Google login error: ', error.message);
-      }
+  const handleGoogleLogin = async (event) => {
+    event.preventDefault();
+    try {
+      await signInWithPopup(auth, googleProvider);
+      navigate('/Profile');
+      console.log(auth?.currentUser?.photoURL);
+    } catch (error) {
+      console.log('Google login error: ', error);
     }
-    
-    const toggleDisplay = () => {
-      setIsVisible(!isVisible)
+  };
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
 
-    }
-
-    const userLoggedIn = () => {
-      const divElement = document.createElement('div');
-      divElement.innerHTML = `
-      <h3 style="color: white;" class="LoggedIn">
-        <span class='welcome' style="color: white;">Welcome to the Verse!</span>
-        <span class='userEmail' style="color: white;">
-          <br />Logged in as:
-          <br />
-          ${user?.email}
-        </span>
-      </h3>
-    `;
-             document.body.appendChild(divElement);
-    }
-  
-
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
   return (
-    <div>
+    <>
+    <div> 
     <Header />
-      <div className="container">
-      
-        <div className="LoginBox">
-               
-               <div style={{ display: isVisible ? 'none' : 'flex' }} className="registerUser">
-                <button onClick={toggleDisplay} className="oldUser" >LOGIN</button>
-                <button onClick={registerUser} className='regBtn'>REGISTER</button>
-                <input type="password" className="password" placeholder='password' ref={registerPasswordRef}  onChange={(event) => {setRegisterPassword(event.target.value)}} />
-                <input type="text" className="email"
-                placeholder='Email' ref={registerEmailRef} onChange={(event) => {setRegisterEmail(event.target.value)}} />
-                <div className="createUser">CREATE USER</div>
+      <div id='stars'></div>
+      <div id='stars2'></div>
+      <div id='stars3'></div>
+      <div className="section">
+        <div className="container">
+          <div className="row full-height justify-content-center">
+            <div className="col-12 text-center align-self-center py-5">
+              <div className="section pb-5 pt-5 pt-sm-2 text-center">
+                <h6 className="mb-0 pb-3"><span>Log In</span><span>Sign Up</span></h6>
+                  <input className="checkbox" type="checkbox" id="reg-log" name="reg-log" />
+                  <label htmlFor="reg-log"></label>
+            <div className="card-3d-wrap mx-auto">
+              <div className="card-3d-wrapper">
+                <div className="card-front">
+                  <div className="center-wrap">
+                    <div className="section text-center">
+                      <h4 className="mb-4 pb-3">Log In</h4>
+                    <div className="form-group">
+                      <input type="email" className="form-style" placeholder="Email" onChange={handleEmailChange} />
+                      <i className="input-icon uil uil-at"></i>
+                    </div>
+                     <div className="form-group mt-2">
+                      <input type="password" className="form-style" placeholder="Password" onChange={handlePasswordChange} />
+                      <i className="input-icon uil uil-lock-alt"></i>
+                     </div>
+                     <div className="btn-box">
+                     <button className="btn mt-4">Login</button>
+                     <button className="btn Google" onClick={handleGoogleLogin}>Sign In with Google</button>
+                     </div>
+                     
+                    </div>
+                  </div>
+                </div>
+                <div className="card-back">
+                  <div className="center-wrap">
+                    <div className="section text-center">
+                      <h4 className="mb-4 pb-3">Sign Up</h4>
+                      <div className="form-group">
+                        <input type="text" className="form-style" placeholder="Username"/>
+                        <i className="input-icon uil uil-user"></i>
+                      </div>
+                      <div className="form-group mt-2">
+                        <input type="email" className="form-style" placeholder="Email"/>
+                        <i className="input-icon uil uil-at"></i>
+                      </div>
+                      <div className="form-group mt-2">
+                        <input type="password" className="form-style" placeholder="Password"/>
+                        <i className="input-icon uil uil-lock-alt"></i>
+                      </div>
+                      <button className="btn mt-4" onClick={handleRegister}>Register</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div style={{ display: isVisible ? 'flex' : 'none' }} className="loginUser">
-                <button onClick={toggleDisplay} className='regBtn'>REGISTER NEW</button>
-                <button className='loginBtn'>ENTER</button>
-                <input type="password" className="password" placeholder='Enter password' onChange={(event) => {setloginPassword(event.target.value)}} />
-                <input type="text" className="email"
-                placeholder='Email' onChange={(event) => {setloginEmail(event.target.value)}} />
-                <div className="login">LOGIN EXISTING USER:</div>
-                
+              </div>
             </div>
-            {/* <h3 className="LoggedIn"><span className='welcome'>Welcome to the Verse!</span> 
-            <span className='userEmail'><br />Logged in as</span>: <br />
-             {user.email} </h3> */}
-             <button className="google" onClick={handleGoogleLogin}>SIGN IN WITH GOOGLE</button>
+          </div>
         </div>
       </div>
     </div>
-  )
+    </>
+    )
+
 }
 
-export default Login
+export default Login;

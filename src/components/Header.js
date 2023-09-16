@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './Header.css'; // Import your CSS styles
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom for navigation
 import { signOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-function Header() {
+function Header({profilePictureURL, isProfilePictureChangeAllowed}) {
   const [menuActive, setMenuActive] = useState(false);
   const [user, setUser] = useState(null);
 
@@ -43,7 +42,6 @@ function Header() {
         <ul className={`navbar-menu ${menuActive ? 'active' : ''}`}>
           <li className="navbar-item"><Link to="/">Home</Link></li>
           <li className="navbar-item"><Link to="/about">About</Link></li>
-          <li className="navbar-item"><Link to="/Team">Build Your Team</Link></li>
           <li className="navbar-item"><Link to="/contact">Contact</Link></li>
 
 
@@ -58,7 +56,15 @@ function Header() {
               </li>
               <li className="navbar-item" id="profile">
                 <Link to="/Profile">
-                  <FontAwesomeIcon icon={faUser} />
+                {isProfilePictureChangeAllowed ? (
+        profilePictureURL ? (
+          <img src={profilePictureURL} alt="Profile" className="profile-picture" />
+        ) : (
+          <FontAwesomeIcon icon={faUser} />
+        )
+      ) : (
+        <FontAwesomeIcon icon={faUser} />
+      )}
                 </Link>
               </li>
             </>

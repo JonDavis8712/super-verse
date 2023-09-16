@@ -1,102 +1,71 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { auth } from '../firebaseConfig';
+import { db } from '../firebaseConfig';
 import { useCharacterData } from '../CharacterDataContext';
-import API from '../assets/API';
-
-
-
-function MyForm() {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [username, setUsername] = useState('');
-  const [profilePicture, setProfilePicture] = useState(null);
-  const [selectOption, setSelectOption] = useState('Option 1');
-
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  }
-
-  const handleProfilePictureChange = (event) => {
-      const file = event.target.files[0];
-      setProfilePicture(event.target.files[0]);
-  }
-
-  const handleDropDownChange = (event) => {
-    setSelectedOption(event.target.value);
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    console.log('username: ', username);
-    console.log('Profile Picture: ', profilePicture);
-    console.log('Selected Option: ', selectedOption);
-  }
-
-  // Include your form JSX code here
-  return (
-   <div>
-    <h2>Edit Profile</h2>
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="username" className="username">Username:</label>
-        <input
-        type="text"
-        id="username"
-        value={username}
-        onChange={handleUsernameChange}
-        required
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="profilePicture" className="profilePicture">Profile Picture:</label>
-        <input
-        type="file"
-        id="profilePicture"
-        name="profilePicture"
-        accept="image/*"
-        onChange={handleProfilePictureChange}
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="dropDown" className="dropDown">Select Your Favorite Character</label>
-        <select
-        id="dropDown"
-        name="dropDown"
-        value={selectedOption}
-        onChange={handleDropDownChange}
-        >
-        
-
-        </select>
-      </div>
-    </form>
-    <API />
-   </div>
-  );
-}
+import './Profile.css';
+import './Login.css';
 
 export default function Profile() {
-  const [userEmail, setUserEmail] = useState('');
-  const { characterData } = useCharacterData();
 
-  useEffect(() => {
-    const currentUser = auth.currentUser;
-    if (currentUser) {
-      const email = currentUser.email;
-      setUserEmail(email);
-    }
-  }, []);
+const [isDivHidden, setIsDivHidden] = useState(true);
+
+
+  const toggleDivVisibility = () => {
+    setIsDivHidden(!isDivHidden); // Toggle the state
+  };
+
+  
 
   return (
     <>
-      <Header />
-      <h1 className="Profile">Profile</h1>
-      <div className="profileBox">
-     
-     
+     <div> 
+    <Header />
+      <div id='stars'></div>
+      <div id='stars2'></div>
+      <div id='stars3'></div>
+      <h1 className='construction'>THIS PROFILE PAGE SECTION<br />
+      IS UNDER CONSTRUCTION</h1>
+      <div className="section">
+        <div className="container">
+          <div className="row full-height justify-content-center">
+            <div className="col-12 text-center align-self-center py-5">
+              <div className="section pb-5 pt-5 pt-sm-2 text-center">
+                <h6 className="mb-0 pb-32"><span>Click ME</span><span>Click Again</span></h6>
+                  <input className="checkbox" type="checkbox" id="reg-log" name="reg-log" onClick={toggleDivVisibility}/>
+                  <label htmlFor="reg-log"></label>
+            <div className="card-3d-wrap mx-auto">
+              <div className="card-3d-wrapper">
+                <div className="card-front-profile">
+                  <div className="center-wrap">
+                    <div className="section text-center">
+                              
+                     
+                    </div>
+                  </div>
+                </div>
+                <div className="card-back-profile">
+                <div className={`form-group-profile ${isDivHidden ? 'hidden' : ''}`}>
+              
+            
+            <div className="content-thumbnail fav">
+            <img className="image fav" src= 'https://drive.google.com/uc?export=download&id=1L5hRlcV1Tjy-_cugoMmnw71HlmwtnGpo' alt=''/>
+          </div>
+          <div className="content-list"/>
+            <div className="name">Batman</div>
+      </div></div>
+                  
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              </div>
+            </div>
+          </div>
         
-      </div>
+     
+    
     </>
   );
 }

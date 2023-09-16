@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { HelmetProvider } from'react-helmet-async'
-import ToggleButtonAndTab from './ToggleButtonAndTab'
+import React, { useState, useEffect } from 'react';
+import { HelmetProvider } from'react-helmet-async';
+import ToggleButtonAndTab from './ToggleButtonAndTab';
+import Layout from '../components/Layout';
 
-
-
-const Appbody = () => {
+const Appbody = ({ profilePictureURL, isProfilePictureChangeAllowed, isSubmitted }) => {
   const [allData, setAllData] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [selectedData, setSelectedData] = useState(null);
@@ -25,7 +24,7 @@ const Appbody = () => {
     }
   };
 
-  const showSearchList = (data) => {
+   const showSearchList = (data) => {
     clearSearchList();
     const searchList = document.querySelector('.search-list');
     if (searchList) {
@@ -233,12 +232,18 @@ if (relativesDiv) {
 
   return (
     <div>
+    <Layout profilePictureURL={profilePictureURL} isProfilePictureChangeAllowed={isProfilePictureChangeAllowed}>
+     
+    </Layout>
     <HelmetProvider>
     <title>Super<span>Verse</span></title>
       <meta name="description" content="SuperVerse is a website for all things Super!" />
       <link rel = "stylesheet" href="main.css" ></link>
       <link rel = "stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css" ></link>
     </HelmetProvider>
+    <div id='stars'></div>
+      <div id='stars2'></div>
+      <div id='stars3'></div>
     <div className="body">
     <div className="main-wrapper">
     <div className="app">
@@ -251,6 +256,7 @@ if (relativesDiv) {
             <button type='submit' className="search-btn">
               <i className="fas fa-search"></i>
             </button>
+            
               <div className="search-list" id='search-list'>
                 {/* <div className="search-list-item">
                   <img src = 'https://drive.google.com/uc?export=download&id=1vuIx3xtTBdBzJ2dYZrBMr_r0Qu0YMbXX' alt=''/>
@@ -258,7 +264,8 @@ if (relativesDiv) {
                 </div> */}
               
               </div>
-            </form> 
+              
+            </form>
       </div>    
      <div className="app-body">
         <div className="body-content">
