@@ -15,12 +15,17 @@ label {
   color: #fff; /* White text color */
 }
 
+
+.reg-log {
+  display: none;
+}
+
 .construction {
   color: var(--accent-color);
   text-align: center;
   margin: 0;
   padding: 0;
-  margin-top: 100px;
+  margin-top: 60px;
   margin-bottom: -80px;
 }
 
@@ -33,6 +38,11 @@ label {
   position: relative;
   overflow: hidden;
 }
+
+.card-3d-wrap.profile {
+  margin-bottom: 120px;
+}
+
 
 .card-front-profile {
   align-items: center;

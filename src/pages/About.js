@@ -8,7 +8,7 @@ export default function About(profilePictureURL, isProfilePictureChangeAllowed, 
      <Header />
      <div className="aboutContainer">
      <div className="container">
-     <div className="app">
+     <div className="app about">
      <h1 className="about-title">ABOUT: <br /> SuperVerse</h1>
        <p className="about">
         Welcome to SuperVerse! This Page started out as a simple idea <br />

@@ -72,7 +72,7 @@ h6 span{
 }
 
 .full-height{
-  min-height: 100vh;
+  max-height: 100vh;
 }
 [type="checkbox"]:checked,
 [type="checkbox"]:not(:checked){
@@ -81,6 +81,7 @@ display: none;
 .checkbox:checked + label,
 .checkbox:not(:checked) + label{
   position: relative;
+  color: black;
   display: block;
   text-align: center;
   width: 60px;
@@ -89,13 +90,17 @@ display: none;
   padding: 0;
   margin: 10px auto;
   cursor: pointer;
-  background-color: transparent;
+  color: black;
+  background-color: black;
   -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
     0px 0px 0.5em 0px var(--glow-color);
     -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
     0px 0px 0.5em 0px var(--glow-color);
     box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
     0px 0px 0.5em 0px var(--glow-color);
+    appearance: none;
+    -webkit-appearance: none; /* For older versions of webkit browsers */
+    -moz-appearance: none; 
 }
 .checkbox:checked + label:before,
 .checkbox:not(:checked) + label:before{
@@ -104,7 +109,7 @@ display: none;
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  color: #ffeba7;
+  color: black;
   background-color: black;
   border: 3px solid var(--text-color);
   font-family: 'unicons';
@@ -116,6 +121,9 @@ display: none;
   text-align: center;
   font-size: 24px;
   transition: all 0.5s ease;
+  appearance: none;
+  -webkit-appearance: none; /* For older versions of webkit browsers */
+  -moz-appearance: none; 
 }
 .checkbox:checked + label:before {
   transform: translateX(44px) rotate(-270deg);
@@ -124,11 +132,11 @@ display: none;
   position: relative;
   width: 440px;
   max-width: 100%;
-  height: 400px;
+  height: 360px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   perspective: 800px;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 .card-3d-wrapper {
   width: 100%;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from'react-router-dom';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom for navigation
 import { signOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
@@ -8,6 +9,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 function Header({profilePictureURL, isProfilePictureChangeAllowed}) {
   const [menuActive, setMenuActive] = useState(false);
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -26,13 +28,17 @@ function Header({profilePictureURL, isProfilePictureChangeAllowed}) {
     setMenuActive(!menuActive);
   };
 
+  const handleHomeClick = () => {
+    navigate('/');
+  }
+
 
 
   return (
     <header>
       <nav className="navbar">
         <div className="navbar-brand">
-          <h2 className="app-title">Super<span>Verse.</span></h2>
+          <h2 className="app-title" onClick={handleHomeClick}>Super<span>Verse.</span></h2>
         </div>
         <div className={`navbar-toggle ${menuActive ? 'active' : ''}`} onClick={toggleMenu}>
           <span></span>
