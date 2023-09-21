@@ -1,3 +1,4 @@
+// For now, this is filler code for future implementation, depending on what I decide to do with the page.
 import { createContext, useContext, useState } from "react";
 
 const CharacterDataContext = createContext();
