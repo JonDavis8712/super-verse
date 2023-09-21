@@ -1,3 +1,5 @@
+// This page will be fully buildable in the future, still writing out what I want to do here exactly
+
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { auth } from '../firebaseConfig';
