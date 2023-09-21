@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <Routes>
-        {/* Define your Header component to appear on every page */}
+        {/* This sets the Header component to appear on every page */}
         <Route element={<Header />} />
 
         {/* Use the "index" attribute for the Home route */}
