@@ -1,3 +1,5 @@
+// A search function that I can use in multiple pages in the future. 
+
 import React, { useState, useEffect } from'react';
 const fetchAllSuperHero = async (searchText) => {
     let url = `https://superheroapi.com/api.php/3382114452106328/search/${searchText}`;
