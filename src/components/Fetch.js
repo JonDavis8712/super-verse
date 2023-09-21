@@ -1,3 +1,4 @@
+// THIS CODE IS CURRENTLY UNUSED IN THE PAGE, BUT WILL BE ADDED IN THE FUTURE
 // CharacterDropdown.js
 
 import React, { useState, useEffect } from 'react';
