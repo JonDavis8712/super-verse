@@ -1,3 +1,4 @@
+// I have the CharacterDataProvider wrapping the App.js page, in preperation for future implementation and use.
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
