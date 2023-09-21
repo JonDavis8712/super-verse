@@ -1,3 +1,6 @@
+// A big note for this section, is that I intend to come back here often, as I learn more about React, Redux and other technologies,
+// I will clean this code, and make it more React.js friendly as opposed to having so much vanila JS throughout.
+
 import React, { useState, useEffect } from 'react';
 import { HelmetProvider } from'react-helmet-async';
 import ToggleButtonAndTab from './ToggleButtonAndTab';
